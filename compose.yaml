@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=mymovie'
+      - 'POSTGRES_PASSWORD=mymovie'
+      - 'POSTGRES_USER=mymovie'
+    ports:
+      - '5432:5432'

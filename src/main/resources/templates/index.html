@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyMovies</title>
+</head>
+<body>
+<h1>My Movie</h1>
+
+
+<h2>Filmes Assistidos</h2>
+<ul>
+    <li th:each="movie : ${movies}">
+        <div>
+            <strong>Título:</strong> <span th:text="${movie.title}"></span>
+        </div>
+        <div>
+            <strong>Gênero:</strong> <span th:text="${movie.genre}"></span>
+        </div>
+        <div>
+            <strong>Data Assistida:</strong> <span th:text="${movie.dateWatched}"></span>
+        </div>
+        <div>
+            <strong>Nota:</strong> <span th:text="${movie.rating}"></span>
+        </div>
+    </li>
+</ul>
+
+<h2>Filmes Para Assistir</h2>
+<ul>
+    <li th:each="item : ${toWatchList}">
+        <div>
+            <strong>Título:</strong> <span th:text="${item.title}"></span>
+        </div>
+        <div>
+            <strong>Gênero:</strong> <span th:text="${item.genre}"></span>
+        </div>
+        <div>
+            <strong>Descrição:</strong> <span th:text="${item.description}"></span>
+        </div>
+    </li>
+</ul>
+
+
+</body>
+</html>
