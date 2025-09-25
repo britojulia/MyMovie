@@ -1,10 +1,8 @@
 package br.com.fiap.mymovie.movie;
 
+import br.com.fiap.mymovie.user.User;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,5 +31,8 @@ public class Movie {
     @Min(value =1, message="{movie.rating.min}")
     @Max(value = 5, message="{movie.rating.max}")
     public int rating;
+
+    @ManyToOne
+    private User user;
 
 }

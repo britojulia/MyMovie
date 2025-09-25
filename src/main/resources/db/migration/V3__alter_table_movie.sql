@@ -1,0 +1,5 @@
+ALTER TABLE movie
+    ADD user_id BIGINT;
+
+ALTER TABLE movie
+    ADD CONSTRAINT FK_MOVIE_ON_USER FOREIGN KEY (user_id) REFERENCES movieuser (id);
