@@ -33,6 +33,6 @@ public class MovieController {
     public String create(Movie movie, RedirectAttributes redirectAttributes){
         movieService.save(movie);
         redirectAttributes.addFlashAttribute("message", "Movie created successfully");
-        return "redirect:/";
+        return "redirect:/movie";
     }
 }

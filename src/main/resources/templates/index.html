@@ -34,31 +34,5 @@
         </div>
     </div>
 </main>
-
-
-<h2>Filmes Para Assistir</h2>
-<a href="towatch/formWatch" class="btn btn-primary">Novo Filme para Assistir</a>
-
-<div th:if="${message}" role="alert" class="alert alert-success alert-soft m-4">
-    <span th:text="${message}"></span>
-</div>
-
-<main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-4 p-8">
-    <div th:each="item : ${toWatchList}" class="card card-border bg-base-300 w-96">
-        <div class="badge badge-secondary m-4">Para Assistir</div>
-
-        <div class="card-body items-center">
-            <h2 th:text="${item.title}" class="card-title"></h2>
-            <p><strong>Gênero:</strong> <span th:text="${item.genre}"></span></p>
-            <p><strong>Descrição:</strong> <span th:text="${item.description}"></span></p>
-        </div>
-
-        <div class="card-actions justify-end m-4">
-            <button class="btn btn-primary">Apagar</button>
-        </div>
-    </div>
-</main>
-
-
 </body>
 </html>
