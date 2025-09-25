@@ -16,4 +16,7 @@ public class ToWatchService {
     public List<ToWatch> getAllToWatch(){
         return  toWatchRepository.findAll();
     }
+
+    public ToWatch save(ToWatch toWatch){   return toWatchRepository.save(toWatch);
+    }
 }

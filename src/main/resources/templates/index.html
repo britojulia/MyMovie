@@ -1,45 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  data-theme="sunset">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <meta charset="UTF-8">
     <title>MyMovies</title>
 </head>
 <body>
+
 <h1>My Movie</h1>
 
 
 <h2>Filmes Assistidos</h2>
-<ul>
-    <li th:each="movie : ${movies}">
-        <div>
-            <strong>Título:</strong> <span th:text="${movie.title}"></span>
+<a href="movie/formMovie" class="btn btn-primary">Novo Filme</a>
+
+<div th:if="${message}" role="alert" class="alert alert-success alert-soft m-4">
+    <span th:text="${message}"></span>
+</div>
+
+<main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-4 p-8">
+    <div th:each="movie : ${movies}" class="card card-border bg-base-300 w-96">
+        <div th:text="${movie.rating + ' pts'}" class="badge badge-accent m-4"></div>
+
+        <div class="card-body items-center">
+            <h2 th:text="${movie.title}" class="card-title"></h2>
+            <p><strong>Gênero:</strong> <span th:text="${movie.gender}"></span></p>
+            <p><strong>Data Assistida:</strong> <span th:text="${movie.dateWatched}"></span></p>
         </div>
-        <div>
-            <strong>Gênero:</strong> <span th:text="${movie.genre}"></span>
+
+        <div class="card-actions justify-end m-4">
+            <button class="btn btn-primary">Apagar</button>
         </div>
-        <div>
-            <strong>Data Assistida:</strong> <span th:text="${movie.dateWatched}"></span>
-        </div>
-        <div>
-            <strong>Nota:</strong> <span th:text="${movie.rating}"></span>
-        </div>
-    </li>
-</ul>
+    </div>
+</main>
+
 
 <h2>Filmes Para Assistir</h2>
-<ul>
-    <li th:each="item : ${toWatchList}">
-        <div>
-            <strong>Título:</strong> <span th:text="${item.title}"></span>
+<a href="towatch/formWatch" class="btn btn-primary">Novo Filme para Assistir</a>
+
+<div th:if="${message}" role="alert" class="alert alert-success alert-soft m-4">
+    <span th:text="${message}"></span>
+</div>
+
+<main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-4 p-8">
+    <div th:each="item : ${toWatchList}" class="card card-border bg-base-300 w-96">
+        <div class="badge badge-secondary m-4">Para Assistir</div>
+
+        <div class="card-body items-center">
+            <h2 th:text="${item.title}" class="card-title"></h2>
+            <p><strong>Gênero:</strong> <span th:text="${item.genre}"></span></p>
+            <p><strong>Descrição:</strong> <span th:text="${item.description}"></span></p>
         </div>
-        <div>
-            <strong>Gênero:</strong> <span th:text="${item.genre}"></span>
+
+        <div class="card-actions justify-end m-4">
+            <button class="btn btn-primary">Apagar</button>
         </div>
-        <div>
-            <strong>Descrição:</strong> <span th:text="${item.description}"></span>
-        </div>
-    </li>
-</ul>
+    </div>
+</main>
 
 
 </body>

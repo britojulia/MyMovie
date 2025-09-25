@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sunset">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Form Movie</title>
+</head>
+<body>
+<h1 class="text-2xl font-bold text-primary p-8">Filme Assistido</h1>
+
+<main class="grid place-items-center gap-4 p-8">
+    <form th:object="${movie}" method="post" class="w-full max-w-md">
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend" >Título</legend>
+            <input th:field="*{title}" th:errorclass="input-error" type="text" class="input" placeholder="Título do filme" required />
+            <p class="label text-error" th:errors="*{title}"></p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Gênero</legend>
+            <input th:field="*{gender}" th:errorclass="input-error" type="text" class="input" placeholder="Gênero do filme" />
+            <p class="label text-error" ></p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend" >Data Assistida</legend>
+            <input th:field="*{dateWatched}" th:errorclass="input-error" type="date" class="input" />
+            <p class="label text-error" th:errors="*{dateWatched}"></p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend" >Nota</legend>
+            <input th:field="*{rating}" th:errorclass="input-error" type="number" min="0" max="10" class="input" />
+            <p class="label text-error" th:errors="*{rating}"></p>
+        </fieldset>
+
+        <div class="space-x-4">
+            <a href="/movies" class="btn btn-neutral">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+
+    </form>
+</main>
+
+
+
+</body>
+</html>

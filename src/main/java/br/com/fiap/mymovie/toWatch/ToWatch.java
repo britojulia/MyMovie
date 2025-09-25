@@ -26,5 +26,5 @@ public class ToWatch {
 
     private String gender;
 
-    public String description;
+    private String description;
 }
