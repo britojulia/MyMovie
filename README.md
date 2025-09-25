@@ -26,7 +26,7 @@ O **MyMovie** é uma aplicação desenvolvida em **Spring Boot + Thymeleaf + Spr
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/britojulia/MyMovie.git
+git clone [https://github.com/britojulia/MyMovie.git](https://github.com/britojulia/MyMovie)
 cd MyMovie
 ```
 
