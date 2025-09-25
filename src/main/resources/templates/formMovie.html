@@ -8,44 +8,45 @@
     <title>Form Movie</title>
 </head>
 <body>
-<h1 class="text-2xl font-bold text-primary p-8">Filme Assistido</h1>
+
+<h1 class="text-2xl font-bold text-primary p-8" th:text="#{movie.new}"></h1>
 
 <main class="grid place-items-center gap-4 p-8">
     <form th:object="${movie}" method="post" class="w-full max-w-md">
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend" >Título</legend>
-            <input th:field="*{title}" th:errorclass="input-error" type="text" class="input" placeholder="Título do filme" required />
+            <legend class="fieldset-legend" th:text="#{title}"></legend>
+            <input th:field="*{title}" th:errorclass="input-error" type="text" class="input"
+                   th:placeholder="#{title}" required />
             <p class="label text-error" th:errors="*{title}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend">Gênero</legend>
-            <input th:field="*{gender}" th:errorclass="input-error" type="text" class="input" placeholder="Gênero do filme" />
-            <p class="label text-error" ></p>
+            <legend class="fieldset-legend" th:text="#{gender}"></legend>
+            <input th:field="*{gender}" th:errorclass="input-error" type="text" class="input"
+                   th:placeholder="#{gender}" />
+            <p class="label text-error" th:errors="*{gender}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend" >Data Assistida</legend>
+            <legend class="fieldset-legend" th:text="#{dateWatched}"></legend>
             <input th:field="*{dateWatched}" th:errorclass="input-error" type="date" class="input" />
             <p class="label text-error" th:errors="*{dateWatched}"></p>
         </fieldset>
 
         <fieldset class="fieldset">
-            <legend class="fieldset-legend" >Nota</legend>
+            <legend class="fieldset-legend" th:text="#{rating}"></legend>
             <input th:field="*{rating}" th:errorclass="input-error" type="number" min="0" max="10" class="input" />
             <p class="label text-error" th:errors="*{rating}"></p>
         </fieldset>
 
         <div class="space-x-4">
-            <a href="/movies" class="btn btn-neutral">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="/movies" class="btn btn-neutral" th:text="#{cancel}"></a>
+            <button type="submit" class="btn btn-primary" th:text="#{save}"></button>
         </div>
 
     </form>
 </main>
-
-
 
 </body>
 </html>

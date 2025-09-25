@@ -1,8 +1,12 @@
 package br.com.fiap.mymovie.movie;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MovieController {
 
     private final MovieService movieService;
+    private final MessageSource messageSource;
 
 
     @GetMapping
@@ -30,9 +35,12 @@ public class MovieController {
     }
 
     @PostMapping("/formMovie")
-    public String create(Movie movie, RedirectAttributes redirectAttributes){
+    public String create(@Valid Movie movie, BindingResult result, RedirectAttributes redirectAttributes){
+        if(result.hasErrors()) return "formMovie";
+
+        var message = messageSource.getMessage("movie.create.success", null, LocaleContextHolder.getLocale());
         movieService.save(movie);
-        redirectAttributes.addFlashAttribute("message", "Movie created successfully");
+        redirectAttributes.addFlashAttribute("message", message);
         return "redirect:/movie";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  data-theme="sunset">
+<html lang="en" data-theme="sunset">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -8,31 +8,61 @@
     <title>MyMovies</title>
 </head>
 <body>
+<!--header-->
+<nav class="navbar bg-base-300 shadow-sm">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl">MyMovie</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <li>
+                <details>
+                    <summary>🌎</summary>
+                    <ul class="bg-base-100 rounded-t-none p-2">
+                        <li><a href="?lang=pt_BR">BR</a></li>
+                        <li><a href="?lang=en_US">US</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<h1>My Movie</h1>
-
-
-<h2>Filmes Assistidos</h2>
-<a href="movie/formMovie" class="btn btn-primary">Novo Filme</a>
+<div class="bg-base-100 rounded-lg p-8 mb-6 text-center">
+    <h2 class="text-3xl font-extrabold text-primary mb-4" th:text="#{movie.description.init}">Bem vindo!</h2>
+    <p class="text-lg text-secondary mb-6" th:text="#{movie.controller.init}">Faça aqui o controle...</p>
+    <a href="movie/formMovie" class="btn btn-primary btn-lg" th:text="#{movie.new}">Novo Filme</a>
+</div>
 
 <div th:if="${message}" role="alert" class="alert alert-success alert-soft m-4">
     <span th:text="${message}"></span>
 </div>
 
-<main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-4 p-8">
-    <div th:each="movie : ${movies}" class="card card-border bg-base-300 w-96">
-        <div th:text="${movie.rating + ' pts'}" class="badge badge-accent m-4"></div>
+<main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+    <div th:each="movie : ${movies}" class="card card-compact w-96 bg-base-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
 
         <div class="card-body items-center">
-            <h2 th:text="${movie.title}" class="card-title"></h2>
-            <p><strong>Gênero:</strong> <span th:text="${movie.gender}"></span></p>
-            <p><strong>Data Assistida:</strong> <span th:text="${movie.dateWatched}"></span></p>
+            <h2 th:text="${movie.title}" class="card-title text-xl font-bold mb-2"></h2>
+
+            <p class="text-sm text-gray-500" th:text="${#temporals.format(movie.dateWatched, 'dd/MM/yyyy')}"></p>
+
+            <p class="text-sm text-gray-600 font-bold italic mt-1" th:text="${movie.gender}"></p>
+
+            <div class="flex mt-2">
+                <span th:each="i : ${#numbers.sequence(1,5)}">
+                    <svg th:classappend="${i <= movie.rating} ? 'text-yellow-400' : 'text-gray-300'" class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.488 6.91l6.564-.955L10 0l2.948 5.955 6.564.955-4.757 4.635 1.123 6.545z"/>
+                    </svg>
+                </span>
+            </div>
         </div>
 
         <div class="card-actions justify-end m-4">
-            <button class="btn btn-primary">Apagar</button>
+            <button class="btn btn-error" th:text="#{delete}"></button>
         </div>
     </div>
 </main>
+
+
 </body>
 </html>
